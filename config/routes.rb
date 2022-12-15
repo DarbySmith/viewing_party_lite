@@ -17,6 +17,3 @@ Rails.application.routes.draw do
   post '/login', to: 'users#login_user'
   delete '/logout', to: 'users#logout'
 end
-
-
-# , only: %w[index new create destroy update]
