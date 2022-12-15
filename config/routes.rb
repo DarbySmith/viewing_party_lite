@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   end
 
   resources :register, only: [:new, :create], controller: "users"
-
-  get "/login", to: "users#login_form"
+  
+  get '/dashboard', to: 'dashboard#show'
+  get '/login', to: 'users#login_form'
   post '/login', to: 'users#login_user'
+  delete '/logout', to: 'users#logout'
 end
+
+
+# , only: %w[index new create destroy update]

@@ -6,7 +6,7 @@
   <%= f.submit "Register" %>
 <% end %> -->
 
-<%= form_with model: @user do |form| %>
+<%= form_with model: @user, local: true do |form| %>
   <%= form.label :name, "Name" %>
   <%= form.text_field :name %><br><br>
   <%= form.label :email, "Email" %>

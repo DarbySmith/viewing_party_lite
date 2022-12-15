@@ -1,15 +1,21 @@
 <center>
 <h1>Viewing Party Lite</h1>
 
-<h3>Login or Register</h3>
-<%= button_to "Register as a User", new_user_path, method: :get %><br>
-<%= button_to "Log In", "/login", method: :get %>
+<% if current_user %>
+  <%= button_to "My Dashboard", user_path(current_user), method: :get %><br>
+  <%= button_to "Log Out", "/logout", method: :delete %>
+  
+  <h3>Current Users</h3>
+  <div id="users">
+    <% @users.each do |u| %>
+      <%= u.email %><br>
+    <% end %>
+  </div>
+<% else %>
+  <h3>Login or Register</h3>
+  <%= button_to "Register as a User", new_user_path, method: :get %><br>
+  <%= button_to "Log In", "/login", method: :get %>
+<% end %>
 
-<h3>Current Users</h3>
-<div id="users">
-  <% @users.each do |u| %>
-    <p><%= link_to "#{u.name}", user_path(u) %></p>
-  <% end %>
-</div>
 
 </center>

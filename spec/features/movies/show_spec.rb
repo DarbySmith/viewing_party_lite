@@ -4,16 +4,25 @@ RSpec.describe 'movies show page', :vcr do
   before :each do
     @user_1 = create(:user)
     @user_2 = create(:user)
+
+    visit root_path
+
+    click_on "Log In"
+    
+    fill_in :username, with: @user_1.username
+    fill_in :password, with: @user_1.password
+    click_on "Log In"
   end
   
-  it 'has a button to create a viewing party' do
-    VCR.insert_cassette "button_view"
+  it 'has a button to create a viewing party', :vcr do
     visit user_movie_path(@user_1, 238)
-
+    
+    VCR.insert_cassette "button_view"
+    VCR.insert_cassette "new_party"
+    
     expect(page).to have_button("Create Viewing Party for The Godfather")
     click_on "Create Viewing Party for The Godfather"
-    
-    VCR.insert_cassette "new_party"
+
     expect(current_path).to eq("/users/#{@user_1.id}/movies/238/viewing_parties/new")
     
     VCR.eject_cassette
