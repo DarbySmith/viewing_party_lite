@@ -23,15 +23,13 @@ RSpec.describe 'root path; application landing page' do
       expect(page).to have_content(@user_2.email)
     end
 
-    xit 'has a link to the user dashboard' do
+    it 'has a button to visit the dashboard' do
       visit root_path
 
-      expect(page).to have_link(@user_1.email)
-      expect(page).to have_link(@user_2.email)
+      expect(page).to have_button("My Dashboard")
+      click_on "My Dashboard"
 
-      click_on @user_1.name
-
-      expect(current_path).to eq("/users/#{@user_1.id}")
+      expect(current_path).to eq(user_path(@user_1))
     end
   end
 
