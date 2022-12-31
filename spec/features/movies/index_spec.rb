@@ -4,10 +4,18 @@ RSpec.describe 'movies index' do
   before :each do
     @user_1 = create(:user)
     @user_2 = create(:user)
+
+    visit root_path
+
+    click_on "Log In"
+
+    fill_in :username, with: @user_1.username
+    fill_in :password, with: @user_1.password
+    click_on "Log In"
   end
 
   it 'has the title as a link to the movie details page from top rated movies', :vcr do
-    visit user_discover_index_path(@user_1)
+    visit discover_path
 
     expect(page).to have_button("Find Top Rated Movies")
 
@@ -20,7 +28,7 @@ RSpec.describe 'movies index' do
   end
 
   it 'has the vote average for the movie from the top rated movies', :vcr do
-    visit user_discover_index_path(@user_1)
+    visit discover_path
 
     expect(page).to have_button("Find Top Rated Movies")
 
@@ -31,7 +39,7 @@ RSpec.describe 'movies index' do
   end
 
   it 'has the title as a link to the movie details page from search field', :vcr do
-    visit user_discover_index_path(@user_1)
+    visit discover_path
 
     expect(page).to have_field(:search)
     expect(page).to have_button("Find Movies")
@@ -46,7 +54,7 @@ RSpec.describe 'movies index' do
   end
 
   it 'has the vote average for the movie from the search field', :vcr do
-    visit user_discover_index_path(@user_1)
+    visit discover_path
 
     expect(page).to have_field(:search)
     expect(page).to have_button("Find Movies")
@@ -60,7 +68,7 @@ RSpec.describe 'movies index' do
 
   it 'has a link to the movies show page', :vcr do
     VCR.insert_cassette "movie_discover"
-    visit user_discover_index_path(@user_1)
+    visit discover_path
 
     expect(page).to have_button("Find Top Rated Movies")
     click_on "Find Top Rated Movies"

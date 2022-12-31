@@ -31,7 +31,7 @@ RSpec.describe 'users dashboard page' do
       
       click_on "Discover Movies"
 
-      expect(current_path).to eq("/users/#{@user_1.id}/discover")
+      expect(current_path).to eq(discover_path)
     end
 
     it 'has a section that lists the viewing parties' do

@@ -4,10 +4,18 @@ RSpec.describe 'user discover movies page' do
   before :each do
     @user_1 = create(:user)
     @user_2 = create(:user)
+
+    visit root_path
+
+    click_on "Log In"
+
+    fill_in :username, with: @user_1.username
+    fill_in :password, with: @user_1.password
+    click_on "Log In"
   end
   
   it 'has a button to discover top rated movies', :vcr do
-    visit user_discover_index_path(@user_1)
+    visit discover_path
 
     expect(page).to have_button("Find Top Rated Movies")
 
@@ -17,7 +25,7 @@ RSpec.describe 'user discover movies page' do
   end
 
   it 'has a text field to enter keywords and button to search by movie title', :vcr do
-    visit user_discover_index_path(@user_1)
+    visit discover_path
 
     expect(page).to have_field(:search)
     expect(page).to have_button("Find Movies")

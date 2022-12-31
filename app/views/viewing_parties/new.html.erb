@@ -1,7 +1,7 @@
 <center>
   <h1>Viewing Party</h1>
   <h3>Create a Movie Party for <%= @movie.title %>
-  <%= button_to "Discover Page", user_discover_index_path(@user), method: :get %>
+  <%= button_to "Discover Page", discover_path, method: :get %>
 
   <h3>Viewing Party Details</h3>
   <%= form_with url: "/users/#{@user.id}/movies/238/viewing_parties", method: :post, local: true do |f| %>
