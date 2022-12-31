@@ -19,13 +19,13 @@ RSpec.describe 'users dashboard page' do
     end
     
     it 'show the name of the user' do
-      visit user_path(@user_1)
+      visit dashboard_path
 
       expect(page).to have_content("#{@user_1.name}'s Dashboard")
     end
 
     it 'has a button to discover movies' do
-      visit user_path(@user_1)
+      visit dashboard_path
 
       expect(page).to have_button("Discover Movies")
       
@@ -35,7 +35,7 @@ RSpec.describe 'users dashboard page' do
     end
 
     it 'has a section that lists the viewing parties' do
-      visit user_path(@user_1)
+      visit dashboard_path
 
       expect(page).to have_content("Viewing Parties")
       
@@ -48,7 +48,7 @@ RSpec.describe 'users dashboard page' do
     end
 
     it 'has a section that lists the viewing parties' do
-      visit user_path(@user_1)
+      visit dashboard_path
 
       expect(page).to have_content("Viewing Parties")
       
@@ -72,7 +72,7 @@ RSpec.describe 'users dashboard page' do
     end
 
     it 'returns an error when user tries to go to dashboard without being logged in' do
-      visit user_path(@user_1)
+      visit dashboard_path
 
       expect(page).to have_content("User must be logged in or registered to access")
     end

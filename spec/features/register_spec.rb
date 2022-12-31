@@ -20,7 +20,7 @@ RSpec.describe 'register page' do
 
     click_button "Create User"
     new_user = User.last.id
-    expect(current_path).to eq(user_path(new_user))
+    expect(current_path).to eq(dashboard_path)
   end
 
   it 'has an error message if email is already taken' do

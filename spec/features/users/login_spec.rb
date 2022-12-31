@@ -18,7 +18,7 @@ RSpec.describe 'user login page' do
     fill_in :password, with: 'pass'
     click_on "Log In"
 
-    expect(current_path).to eq(user_path(@user_1))
+    expect(current_path).to eq(dashboard_path)
   end
 
   it 'it shows an error message if user enters bad credentials' do

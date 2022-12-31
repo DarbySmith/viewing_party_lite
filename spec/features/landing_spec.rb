@@ -29,7 +29,7 @@ RSpec.describe 'root path; application landing page' do
       expect(page).to have_button("My Dashboard")
       click_on "My Dashboard"
 
-      expect(current_path).to eq(user_path(@user_1))
+      expect(current_path).to eq(dashboard_path)
     end
   end
 

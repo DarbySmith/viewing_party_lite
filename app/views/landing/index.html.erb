@@ -2,7 +2,7 @@
 <h1>Viewing Party Lite</h1>
 
 <% if current_user %>
-  <%= button_to "My Dashboard", user_path(current_user), method: :get %><br>
+  <%= button_to "My Dashboard", dashboard_path, method: :get %><br>
   <%= button_to "Log Out", "/logout", method: :delete %>
   
   <h3>Current Users</h3>

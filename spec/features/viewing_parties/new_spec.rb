@@ -40,7 +40,7 @@ RSpec.describe 'new viewing party page' do
       click_on "Create Party"
 
       VCR.insert_cassette "user_dash"
-      expect(current_path).to eq(user_path(@user_1))
+      expect(current_path).to eq(dashboard_path)
       expect(page).to have_content("The Godfather")
       expect(page).to have_content("2022-12-14")
       expect(page).to have_content("2000-01-01 16:37:00 UTC")

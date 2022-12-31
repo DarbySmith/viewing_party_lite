@@ -17,7 +17,7 @@ class ViewingPartiesController < ApplicationController
       attendees.each do |attendee|
         UserParty.create!(user: attendee, party: party, host: false)
       end
-      redirect_to user_path(user)
+      redirect_to dashboard_path
     else
       flash[:alert] = party.errors.full_messages.to_sentence
       redirect_to "/users/#{user.id}/movies/#{params[:movie_id]}/viewing_parties/new"

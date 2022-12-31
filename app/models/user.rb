@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates_presence_of :name, :email
   validates :email, uniqueness: true
   validates :username, uniqueness: true, presence: true
+  # validates :passowrd_digest, presence: true
 
   #needed to allow bcrypt to create a passowrd_digest from password input
   has_secure_password
