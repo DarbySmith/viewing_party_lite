@@ -31,7 +31,6 @@ class ViewingPartiesController < ApplicationController
 
   def require_login
     if current_user.nil?
-      # user = User.find(params[:user_id])
       movie = MovieFacade.movie_details(params[:movie_id])
       redirect_to movie_path(movie.id) 
       flash[:alert] = "User must be logged in or registered to access"
