@@ -15,28 +15,22 @@ RSpec.describe 'movies show page', :vcr do
   end
   
   it 'has a button to create a viewing party', :vcr do
-    visit user_movie_path(@user_1, 238)
-    
-    VCR.insert_cassette "button_view"
-    VCR.insert_cassette "new_party"
+    visit '/movies/238'
     
     expect(page).to have_button("Create Viewing Party for The Godfather")
     click_on "Create Viewing Party for The Godfather"
 
-    expect(current_path).to eq("/users/#{@user_1.id}/movies/238/viewing_parties/new")
-    
-    VCR.eject_cassette
-    VCR.eject_cassette
+    expect(current_path).to eq(new_movie_viewing_party_path(238))
   end
 
   it 'has a button to return to the discover page' do
-    visit user_movie_path(@user_1, 238)
+    visit '/movies/238'
 
     expect(page).to have_button("Discover Movies")
   end
 
   it 'has the movie title, vote average, runtime, genres, summary, 10 cast members, count of reviews, and each reviews author and review', :vcr do
-    visit user_movie_path(@user_1, 238)
+    visit '/movies/238'
 
     expect(page).to have_content("The Godfather")
     expect(page).to have_content("Vote average: 8.7")

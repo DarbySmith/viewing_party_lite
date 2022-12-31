@@ -4,7 +4,7 @@
   <%= button_to "Discover Page", discover_path, method: :get %>
 
   <h3>Viewing Party Details</h3>
-  <%= form_with url: "/users/#{@user.id}/movies/238/viewing_parties", method: :post, local: true do |f| %>
+  <%= form_with url: movie_viewing_parties_path(@movie.id), method: :post, local: true do |f| %>
     <p><%= f.label :movie_title, "Movie Title" %>
     <%= f.text_field :movie_title, readonly: true, value: @movie.title %></p>
     <p><%= f.label :duration, "Duration of Party" %>

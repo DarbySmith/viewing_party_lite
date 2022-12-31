@@ -3,12 +3,12 @@ class ViewingPartiesController < ApplicationController
   
   def new
     @movie = MovieFacade.movie_details(params[:movie_id])
-    @user = User.find(params[:user_id])
+    @user = User.find(session[:user_id])
     @users = User.all
   end
 
   def create
-    user = User.find(params[:user_id])
+    user = User.find(session[:user_id])
     party = Party.new(viewing_party_params)
     
     if party.save
@@ -20,7 +20,7 @@ class ViewingPartiesController < ApplicationController
       redirect_to dashboard_path
     else
       flash[:alert] = party.errors.full_messages.to_sentence
-      redirect_to "/users/#{user.id}/movies/#{params[:movie_id]}/viewing_parties/new"
+      redirect_to new_movie_viewing_party_path(params[:movie_id])
     end
   end
 
@@ -31,9 +31,9 @@ class ViewingPartiesController < ApplicationController
 
   def require_login
     if current_user.nil?
-      user = User.find(params[:user_id])
+      # user = User.find(params[:user_id])
       movie = MovieFacade.movie_details(params[:movie_id])
-      redirect_to user_movie_path(user, movie.id) 
+      redirect_to movie_path(movie.id) 
       flash[:alert] = "User must be logged in or registered to access"
     end
   end
